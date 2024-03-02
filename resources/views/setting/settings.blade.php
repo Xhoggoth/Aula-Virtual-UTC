@@ -1,0 +1,180 @@
+@extends('layouts.master')
+@section('content')
+    <div class="page-wrapper">
+        <div class="content container-fluid">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="page-title">Configuraciones</h3>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{{ route('setting/page') }}">Configuraciones</a></li>
+                            <li class="breadcrumb-item active">Configuraciones Generales</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-menu-links">
+                <ul class="nav nav-tabs menu-tabs">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="settings.html">Configuraciones Generales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="localization-details.html">Localización</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="payment-settings.html">Configuración de pagos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="email-settings.html">Configuración de correo electrónico</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="social-settings.html">Inicio de sesión en redes sociales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="social-links.html">Links de redes sociales</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="seo-settings.html">Configuración SEO</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="others-settings.html">Otros</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Detalles básicos del sitio web</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <form>
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label>Nombre del sitio web <span class="star-red">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Introduzca el nombre de la página">
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="settings-label">Logo <span class="star-red">*</span></p>
+                                        <div class="settings-btn">
+                                            <input type="file" accept="image/*" name="image" id="file"
+                                                onchange="loadFile(event)" class="hide-input">
+                                            <label for="file" class="upload">
+                                                <i class="feather-upload"></i>
+                                            </label>
+                                        </div>
+                                        <h6 class="settings-size">El tamaño de imagen recomendado es <span>150px x
+                                                150px</span></h6>
+                                        <div class="upload-images">
+                                            <img src="{{ URL::to('assets/img/logo.png') }}" alt="Image">
+                                            <a href="javascript:void(0);" class="btn-icon logo-hide-btn">
+                                                <i class="feather-x-circle"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <p class="settings-label">Favicon <span class="star-red">*</span></p>
+                                        <div class="settings-btn">
+                                            <input type="file" accept="image/*" name="image" id="file"
+                                                onchange="loadFile(event)" class="hide-input">
+                                            <label for="file" class="upload">
+                                                <i class="feather-upload"></i>
+                                            </label>
+                                        </div>
+                                        <h6 class="settings-size">
+                                            El tamaño de imagen recomendado es <span>16px x 16px or 32px x 32px</span>
+                                        </h6>
+                                        <h6 class="settings-size mt-1">Formatos aceptados: sólo .png e .ico</h6>
+                                        <div class="upload-images upload-size">
+                                            <img src="{{ URL::to('assets/img/favicon.png') }}" alt="Image">
+                                            <a href="javascript:void(0);" class="btn-icon logo-hide-btn">
+                                                <i class="feather-x-circle"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="row">
+                                        <div class="col-lg-5 col-md-6">
+                                            <div class="form-group">
+                                                <div
+                                                    class="status-toggle d-flex justify-content-between align-items-center">
+                                                    <p class="mb-0">RTL</p>
+                                                    <input type="checkbox" id="status_1" class="check">
+                                                    <label for="status_1" class="checktoggle">checkbox</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="form-group mb-0">
+                                        <div class="settings-btns">
+                                            <button type="submit" class="btn btn-orange">Actualizar</button>
+                                            <button type="submit" class="btn btn-grey">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">Detalles de la dirección</h5>
+                        </div>
+                        <div class="card-body pt-0">
+                            <form>
+                                <div class="settings-form">
+                                    <div class="form-group">
+                                        <label>Dirección 1 <span class="star-red">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Introduzca la Dirección 1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Dirección 2 <span class="star-red">*</span></label>
+                                        <input type="text" class="form-control" placeholder="Introduzca la Dirección 2">
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Ciudad <span class="star-red">*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Estado <span class="star-red">*</span></label>
+                                                <select class="select form-control">
+                                                    <option selected="selected">Coahuila</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Código postal <span class="star-red">*</span></label>
+                                                <input type="text" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>País <span class="star-red">*</span></label>
+                                                <select class="select form-control">
+                                                    <option selected="selected">México</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-0">
+                                        <div class="settings-btns">
+                                            <button type="submit" class="btn btn-orange">Actualizar</button>
+                                            <button type="submit" class="btn btn-grey">Cancelar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
